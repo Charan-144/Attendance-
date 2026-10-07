@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LeapStart | Employee Attendance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#0f4d68;--blue:#3bb3e3;--orange:#f5b95a;--text:#5b6470;--line:#e5eaf0}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:linear-gradient(180deg,#e9f6fc 0,#fff 380px) no-repeat #fff}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 4vw;background:#fff;box-shadow:0 2px 14px rgba(15,77,104,.05)}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+.logo .t{line-height:1}
+.logo b{display:block;font-size:30px;font-weight:800;color:var(--teal);letter-spacing:.01em}
+.logo small{display:block;font-size:9px;letter-spacing:.32em;color:var(--teal);margin-top:3px;font-weight:500}
+.links{display:flex;gap:28px;font-weight:500;font-size:16px}
+.links a{color:var(--teal);text-decoration:none}
+.btn{font:inherit;font-weight:600;border:1px solid transparent;cursor:pointer;color:#fff;background:var(--teal);padding:11px 24px;border-radius:999px;text-decoration:none;font-size:15px;box-shadow:0 8px 18px rgba(15,77,104,.18)}
+.btn:disabled{opacity:.65;cursor:wait}
+.btn.ghost{background:#fff;color:var(--teal);border-color:var(--line);box-shadow:none}
+@media(max-width:860px){.links{display:none}}
+header{text-align:center;padding:48px 18px 20px}
+.badge{display:inline-flex;gap:8px;align-items:center;border:1.5px solid #8fd3ee;background:#dff3fb;color:#111;border-radius:999px;padding:9px 20px;font-weight:500;font-size:15px}
+h1{margin:26px 0 12px;color:var(--teal);font-weight:700;font-size:clamp(34px,7vw,72px);line-height:1.12;letter-spacing:-.02em}
+h1 .g{background:linear-gradient(90deg,var(--blue),#b9bf9c 50%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(16px,2.2vw,22px);line-height:1.6;max-width:760px;margin:0 auto}
+.sub em{font-style:normal;color:var(--orange);font-weight:500}
+.clock{margin-top:22px;color:var(--teal)}
+.clock strong{display:block;font-size:34px;font-weight:700}
+main{max-width:1040px;margin:0 auto;padding:10px 16px 50px}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 14px 40px rgba(15,77,104,.08)}
+.bar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:14px}
+input{font:inherit;padding:12px 18px;border:1px solid var(--line);border-radius:999px;width:100%;max-width:320px;color:var(--teal);outline:none}
+input:focus{border-color:var(--blue)}
+.hint{font-size:13px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:760px}
+th,td{text-align:left;padding:14px 10px;border-bottom:1px solid var(--line);font-size:14px;vertical-align:middle}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--teal)}
+td strong{color:var(--teal)}
+.ok{display:inline-block;background:#e6f7ee;color:#15803d;border-radius:999px;padding:6px 14px;font-weight:600;font-size:13px}
+.loc{font-size:12.5px;max-width:260px}
+.loc a{color:var(--blue)}
+.err{color:#dc2626;font-size:12.5px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:var(--teal);color:#fff;padding:16px 22px;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:.3s;max-width:92vw;font-size:14px;line-height:1.5}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast b{display:block;font-size:17px;color:var(--orange)}
+footer{text-align:center;font-size:12px;padding:18px}
+</style>
+</head>
+<body>
+<nav>
+  <a class="logo" href="https://leapstart.in" aria-label="LeapStart School of Technology">
+    <svg width="44" height="48" viewBox="0 0 44 48"><path d="M4 6l18-4 18 4v20c0 10-8 17-18 20C12 43 4 36 4 26z" fill="#fff" stroke="#0f4d68" stroke-width="3"/><path d="M14 30l12-16M26 14h-8M26 14v8" fill="none" stroke="#0f4d68" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 12l8-2" stroke="#f5b95a" stroke-width="3" stroke-linecap="round"/></svg>
+    <span class="t"><b>LEAPSTART</b><small>SCHOOL OF TECHNOLOGY</small></span>
+  </a>
+  <div class="links"><a href="https://leapstart.in/about">About</a><a href="https://leapstart.in/programs">Programs</a><a href="https://leapstart.in/school-of-skills">Skills</a><a href="https://leapstart.in/admissions">Admissions</a><a href="https://leapstart.in/faq">FAQ</a></div>
+  <a class="btn" href="https://leapstart.in/contact">Contact us</a>
+</nav>
+
+<header>
+  <span class="badge">✨ Employee Attendance · <span id="badgeDate"></span></span>
+  <h1>Mark Your<br><span class="g">Daily</span> Attendance</h1>
+  <p class="sub">Find your name, tap <em>Check-in</em> and allow location access. Your <em>date, time and location</em> are recorded automatically.</p>
+  <div class="clock"><strong id="time">--:--:--</strong><span id="date"></span></div>
+</header>
+
+<main>
+  <div class="card">
+    <div class="bar">
+      <input id="q" placeholder="Search your name…" autocomplete="off">
+      <span class="hint">Location permission is required to check in.</span>
+    </div>
+    <div class="wrap">
+      <table>
+        <thead><tr><th>Employee</th><th>Role</th><th>Date</th><th>Time</th><th>Location</th><th>Attendance</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<footer>© 2026 LeapStart School of Technology. All rights reserved.</footer>
+<div id="toast"></div>
+
+<script>
+// ====== CONFIG: paste your Google Apps Script Web App URL here (see setup steps) ======
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyGA87BMSgqzQwsqaih70npcB4uCXA0cMqqtlan_fWxsvA51CUL5ZBKGVm0mPa0RdVp/exec";
+// =====================================================================================
+var people=[["Aarav Reddy","Mentor"],["Priya Sharma","Operations"],["Rohit Verma","Software Engineer"],["Ananya Iyer","Data Scientist"],["Karthik Naidu","Tech Lead"],["Sneha Kapoor","HR Executive"],["Vikram Singh","Admissions"],["Meera Nair","QA Engineer"],["Arjun Patel","Designer"],["Divya Menon","Accounts"]];
+var tb=document.getElementById("rows"),q=document.getElementById("q"),toast=document.getElementById("toast");
+function esc(s){return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function today(){return new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Kolkata"})}
+var KEY="ls_att_"+today(),rec={};
+try{rec=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(rec))}catch(e){}}
+function tick(){
+  var n=new Date(),o={timeZone:"Asia/Kolkata"};
+  document.getElementById("time").textContent=n.toLocaleTimeString("en-IN",Object.assign({hour:"2-digit",minute:"2-digit",second:"2-digit",hour12:true},o));
+  var d=n.toLocaleDateString("en-IN",Object.assign({weekday:"long",day:"numeric",month:"long",year:"numeric"},o));
+  document.getElementById("date").textContent=d;
+  document.getElementById("badgeDate").textContent=n.toLocaleDateString("en-IN",Object.assign({day:"2-digit",month:"short",year:"numeric"},o));
+}
+setInterval(tick,1000);tick();
+function locHtml(r){return esc(r.address||"")+(r.address?"<br>":"")+"<a target='_blank' rel='noopener' href='https://maps.google.com/?q="+r.lat+","+r.lng+"'>"+Number(r.lat).toFixed(5)+", "+Number(r.lng).toFixed(5)+"</a>"}
+function render(){
+  var f=q.value.trim().toLowerCase();tb.innerHTML="";
+  people.forEach(function(p,i){
+    if(f&&p[0].toLowerCase().indexOf(f)<0)return;
+    var r=rec[p[0]],tr=document.createElement("tr");
+    tr.innerHTML="<td><strong>"+esc(p[0])+"</strong></td><td>"+esc(p[1])+"</td><td>"+(r?esc(r.date):"—")+"</td><td>"+(r?esc(r.time):"—")+"</td><td class='loc' id='l"+i+"'>"+(r?locHtml(r):"—")+"</td><td>"+(r?"<span class='ok'>✓ Logged in</span>":"<button class='btn' data-i='"+i+"'>Check-in</button>")+"</td>";
+    tb.appendChild(tr);
+  });
+}
+function say(html){toast.innerHTML=html;toast.className="show";clearTimeout(say.t);say.t=setTimeout(function(){toast.className=""},7000)}
+function address(lat,lng){
+  var c=new AbortController(),t=setTimeout(function(){c.abort()},4000);
+  return fetch("https://nominatim.openstreetmap.org/reverse?format=json&zoom=18&lat="+lat+"&lon="+lng,{signal:c.signal})
+    .then(function(r){return r.json()}).then(function(j){clearTimeout(t);return j.display_name||""}).catch(function(){return ""});
+}
+tb.addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  var i=b.dataset.i,name=people[i][0],l=document.getElementById("l"+i);
+  if(SCRIPT_URL.indexOf("http")!==0){l.innerHTML="<span class='err'>Attendance server not connected yet.</span>";return}
+  if(!navigator.geolocation){l.innerHTML="<span class='err'>Location is not supported on this device.</span>";return}
+  b.disabled=true;b.textContent="Asking location…";l.textContent="—";
+  navigator.geolocation.getCurrentPosition(function(pos){
+    b.textContent="Recording…";
+    var c=pos.coords;
+    address(c.latitude,c.longitude).then(function(addr){
+      return fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({name:name,role:people[i][1],lat:c.latitude,lng:c.longitude,accuracy:Math.round(c.accuracy),address:addr})})
+        .then(function(r){return r.json()}).then(function(j){
+          if(!j.ok)throw new Error(j.error||"Failed");
+          rec[name]={date:j.date,time:j.time,lat:c.latitude,lng:c.longitude,address:addr};save();render();
+          say("<b>✓ Logged in"+(j.duplicate?" (already recorded today)":"")+"</b>"+esc(name)+"<br>"+esc(j.date)+" · "+esc(j.time)+"<br>"+esc(addr||(c.latitude.toFixed(5)+", "+c.longitude.toFixed(5))));
+        });
+    }).catch(function(){
+      b.disabled=false;b.textContent="Check-in";
+      l.innerHTML="<span class='err'>Could not record attendance. Check your internet and try again.</span>";
+    });
+  },function(err){
+    b.disabled=false;b.textContent="Check-in";
+    l.innerHTML="<span class='err'>"+(err.code===1?"Location access denied. Allow it in your browser settings and retry.":"Could not get your location. Try again.")+"</span>";
+  },{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+});
+q.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>
